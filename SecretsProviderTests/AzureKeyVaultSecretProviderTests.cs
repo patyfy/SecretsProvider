@@ -20,7 +20,8 @@ namespace SecretsProviderTests
         public async Task GetSecretValue_Returns_String()
         {
             // Arrange
-            var provider = new AzureKeyVaultSecretProvider();
+            var uri = new Uri("https://aka.ms");
+            var provider = new AzureKeyVaultSecretProvider(uri);
 
             // Act
             var secret = await provider.GetSecretValueAsync("key");
@@ -34,8 +35,9 @@ namespace SecretsProviderTests
         public async Task GetSecretValue_Returns_Secret()
         {
             // Arrange
+            var uri = new Uri("https://aka.ms");
             var expectedValue = "open sesame!";
-            var provider = new AzureKeyVaultSecretProvider();
+            var provider = new AzureKeyVaultSecretProvider(uri);
 
             // Act
             var secret = await provider.GetSecretValueAsync("key");
